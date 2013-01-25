@@ -5,7 +5,7 @@ $DefaultNetstreamDriver gtls                                # use gtls netstream
 $ActionSendStreamDriverMode 1                               # require TLS
 $ActionSendStreamDriverAuthMode x509/name                   # authenticate by hostname
 
-*.* @@<%= @host %><% unless @port.empty? %>:<%= @port %><% end %>
+*.* @<%= @host %><% unless @port.empty? %>:<%= @port %><% end %>
 
 <% unless @optional_files.empty? %>
 $ModLoad imfile
