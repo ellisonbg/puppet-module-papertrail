@@ -1,5 +1,7 @@
 class papertrail::install {
 
+  include stdlib
+
   package { ['rsyslog', 'rsyslog-gnutls', 'wget']:
     ensure  => 'installed'
   }
