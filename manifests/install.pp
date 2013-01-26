@@ -10,7 +10,7 @@ class papertrail::install {
     group   => 'root',
     mode    => '0640',
     content => template('papertrail/etc/rsyslog.d/papertrail.conf.erb'),
-    require => Package['rsyslog', 'rsyslog-gnutls'],
+    require => [File_line['rsyslog_set_hostname'], Package['rsyslog', 'rsyslog-gnutls']],
     notify  => Service['rsyslog'];
   }
 
