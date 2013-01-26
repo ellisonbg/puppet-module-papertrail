@@ -31,4 +31,10 @@ class papertrail::install {
     command => "wget ${papertrail::cert_url} -O ${papertrail::cert}",
     creates => $papertrail::cert
   }
+
+  file_line { 'set_hostname':
+    file => '/etc/rsyslog.conf',
+    line => "$LocalHostName $papertrail::syslog_hostname"
+  }
+
 }
