@@ -4,7 +4,7 @@ class papertrail(
   $cert_url = 'https://papertrailapp.com/tools/syslog.papertrail.crt',
   $cert = '/etc/syslog.papertrail.crt',
   $optional_files = [],
-  $syslog_hostname = $hostname
+  $hostname = $hostname
   ) {
 
   include papertrail::install,

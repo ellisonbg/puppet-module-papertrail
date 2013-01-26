@@ -1,7 +1,5 @@
 class papertrail::install {
 
-  include stdlib
-
   package { ['rsyslog', 'rsyslog-gnutls', 'wget']:
     ensure  => 'installed'
   }
@@ -34,9 +32,9 @@ class papertrail::install {
     creates => $papertrail::cert
   }
 
-  file_line { 'set_hostname':
-    file => '/etc/rsyslog.conf',
-    line => "$LocalHostName $papertrail::syslog_hostname"
+  file_line { 'rsyslog_set_hostname':
+    path => '/etc/rsyslog.conf',
+    line => "\$LocalHostName ${papertrail::hostname}"
   }
 
 }
