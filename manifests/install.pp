@@ -11,8 +11,7 @@ class papertrail::install {
     mode    => '0640',
     content => template('papertrail/etc/rsyslog.d/papertrail.conf.erb'),
     require => [File_line['rsyslog_set_hostname'],
-                Package['rsyslog', 'rsyslog-gnutls'],
-                Service['rsyslog']]
+                Package['rsyslog', 'rsyslog-gnutls']]
   }
 
   file { $papertrail::cert:
