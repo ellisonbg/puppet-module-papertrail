@@ -28,7 +28,7 @@ $ModLoad imklog   # provides kernel logging support (previously done by rklogd)
 ###########################
 
 # Set the hostname using puppet
-$LocalHostName <%= hostname %>
+$LocalHostName <%= rsyslog_hostname %>
 
 #
 # Use traditional timestamp format.

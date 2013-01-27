@@ -4,6 +4,8 @@ class papertrail::install {
     ensure  => 'installed'
   }
 
+  $rsyslog_hostname = $papertrail::hostname
+
   file { '/etc/rsyslog.conf':
     ensure  => 'present',
     owner   => 'root',
