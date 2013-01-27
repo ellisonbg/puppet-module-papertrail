@@ -10,8 +10,8 @@ class papertrail::install {
     group   => 'root',
     mode    => '0640',
     content => template('papertrail/etc/rsyslog.d/papertrail.conf.erb'),
-    require => [Service['rsyslog'],
-                Package['rsyslog', 'rsyslog-gnutls']]
+    require => Package['rsyslog', 'rsyslog-gnutls'],
+    notify  => Service['rsyslog'];
   }
 
   file { $papertrail::cert:
@@ -30,12 +30,6 @@ class papertrail::install {
     path    => '/bin/:/usr/bin/:/usr/local/bin/',
     command => "wget ${papertrail::cert_url} -O ${papertrail::cert}",
     creates => $papertrail::cert
-  }
-
-  file_line { 'rsyslog_set_hostname':
-    path   => '/etc/rsyslog.conf',
-    line   => "\$LocalHostName ${papertrail::hostname}",
-    notify  => Service['rsyslog'];
   }
 
 }
