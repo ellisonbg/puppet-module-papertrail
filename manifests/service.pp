@@ -5,6 +5,6 @@ class papertrail::service {
     hasstatus   => true,
     hasrestart  => true,
     enable      => true,
-    require     => Class['papertrail::install'];
+    require     => File_line['rsyslog_set_hostname'];
   }
 }
