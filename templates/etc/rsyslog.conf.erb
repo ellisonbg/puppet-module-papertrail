@@ -5,6 +5,8 @@
 #
 #  Default logging rules can be found in /etc/rsyslog.d/50-default.conf
 
+# Set the hostname using puppet
+$LocalHostName <%= rsyslog_hostname %>
 
 #################
 #### MODULES ####
@@ -26,9 +28,6 @@ $ModLoad imklog   # provides kernel logging support (previously done by rklogd)
 ###########################
 #### GLOBAL DIRECTIVES ####
 ###########################
-
-# Set the hostname using puppet
-$LocalHostName <%= rsyslog_hostname %>
 
 #
 # Use traditional timestamp format.
