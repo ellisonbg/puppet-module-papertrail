@@ -35,7 +35,6 @@ class papertrail::install {
   file_line { 'rsyslog_set_hostname':
     path   => '/etc/rsyslog.conf',
     line   => "\$LocalHostName ${papertrail::hostname}",
-    notify => Service['rsyslog'];
   }
 
 }
