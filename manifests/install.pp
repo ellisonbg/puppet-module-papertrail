@@ -4,6 +4,17 @@ class papertrail::install {
     ensure  => 'installed'
   }
 
+  file { '/etc/rsyslog.conf':
+    ensure  => 'present',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0640',
+    content => template('papertrail/etc/rsyslog.conf.erb'),
+    require => Package['rsyslog', 'rsyslog-gnutls'],
+    notify  => Service['rsyslog'];
+  }
+
+
   file { '/etc/rsyslog.d/papertrail.conf':
     ensure  => 'present',
     owner   => 'root',
@@ -21,7 +32,7 @@ class papertrail::install {
     group   => 'root',
     mode    => '0600',
     require => [
-      File['/etc/rsyslog.d/papertrail.conf'],
+      File['/etc/rsyslog.d/papertrail.conf', '/etc/rsyslog.conf'],
       Exec['get_certificates']
     ];
   }
